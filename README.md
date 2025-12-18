@@ -1,5 +1,7 @@
 # Kiniku Card 💪🌱
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/nac-39/kinkiku-card)
+
 Tiny workout tracker for two people, built on Cloudflare Workers + D1. Mark "workout" or "skip" for today and watch the grid grow. ✨
 
 ## Quick start 🚀
