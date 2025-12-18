@@ -184,7 +184,7 @@ app.get('/setup', async (c) => {
           <div class="row">
             <div style="min-width:220px;">
               <div class="muted">表示名（草カードに出る名前）</div>
-              <input name="display_name" placeholder="例: ななこ / 〇〇くん" style="width:100%; padding:10px; border-radius:12px; border:1px solid #ccc;" />
+              <input name="display_name" placeholder="例: Aさん / Bさん" style="width:100%; padding:10px; border-radius:12px; border:1px solid #ccc;" />
             </div>
             <button class="btn" type="submit">この端末で使う</button>
           </div>
