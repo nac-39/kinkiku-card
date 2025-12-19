@@ -130,7 +130,7 @@ function Layout(props: { children: any }) {
           body{font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 18px; }
           button,input{font: inherit;}
           .top{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center;}
-          .card{border:1px solid #ddd; border-radius:14px; padding:12px 14px; width: fit-content;}
+          .card{border:1px solid #ddd; border-radius:14px; padding:12px 14px; width: min(620px, calc(100vw - 36px)); box-sizing:border-box;}
           .row{display:flex; gap:10px; flex-wrap:wrap;}
           .btn{border:1px solid #ccc; background:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; font-size:14px; color:#333; -webkit-text-fill-color:#333;}
           .btn-subtle{border:1px dashed #ddd; color:#444; background:#fafafa; font-size:14px; -webkit-text-fill-color:#444;}
@@ -140,7 +140,8 @@ function Layout(props: { children: any }) {
           .muted{color:#666; font-size: 12px;}
           .pill{display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid #ddd; font-size: 12px;}
           .two{display:grid; grid-template-columns: max-content; gap: 12px; justify-items:center; justify-content:center;}
-          .grid{display:grid; grid-auto-flow:column; grid-auto-columns:12px; grid-template-rows: repeat(7, 12px); row-gap:3px; column-gap:3px; padding: 8px; overflow-x:auto;}
+          .grid-wrap{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch;}
+          .grid{display:grid; grid-auto-flow:column; grid-auto-columns:12px; grid-template-rows: repeat(7, 12px); row-gap:3px; column-gap:3px; padding: 8px; width:max-content;}
           .cell{width:12px; height:12px; border-radius: 3px; background:#ebedf0;}
           .w{background:#40c463;}
           .s{background:#9be9a8;}
@@ -233,12 +234,14 @@ app.get('/', async (c) => {
   const me = uid === 'user1' ? u1 : u2
 
   const renderGrid = (m: Map<string, Status>) => (
-    <div class="grid">
-      {days.map((d) => {
-        const st = m.get(d)
-        const cls = st === 'workout' ? 'cell w' : st === 'skip' ? 'cell s' : 'cell'
-        return <div class={cls} title={`${d} : ${st ?? 'none'}`}></div>
-      })}
+    <div class="grid-wrap">
+      <div class="grid">
+        {days.map((d) => {
+          const st = m.get(d)
+          const cls = st === 'workout' ? 'cell w' : st === 'skip' ? 'cell s' : 'cell'
+          return <div class={cls} title={`${d} : ${st ?? 'none'}`}></div>
+        })}
+      </div>
     </div>
   )
 
@@ -283,6 +286,20 @@ app.get('/', async (c) => {
         {Card(u1)}
         {Card(u2)}
       </div>
+      <script>{`
+        (() => {
+          const scrollToEnd = () => {
+            document.querySelectorAll('.grid-wrap').forEach((g) => {
+              g.scrollLeft = g.scrollWidth;
+            });
+          };
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scrollToEnd);
+          } else {
+            scrollToEnd();
+          }
+        })();
+      `}</script>
     </Layout>
   )
 })
