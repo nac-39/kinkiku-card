@@ -132,8 +132,8 @@ function Layout(props: { children: any }) {
           .top{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center;}
           .card{border:1px solid #ddd; border-radius:14px; padding:12px 14px; width: fit-content;}
           .row{display:flex; gap:10px; flex-wrap:wrap;}
-          .btn{border:1px solid #ccc; background:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; font-size:14px;}
-          .btn-subtle{border:1px dashed #ddd; color:#666; background:#fafafa; font-size:14px;}
+          .btn{border:1px solid #ccc; background:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; font-size:14px; color:#333; -webkit-text-fill-color:#333;}
+          .btn-subtle{border:1px dashed #ddd; color:#444; background:#fafafa; font-size:14px; -webkit-text-fill-color:#444;}
           .icon-btn{border:1px solid #e0e0e0; background:#fff; width:36px; height:36px; border-radius:10px; display:inline-flex; justify-content:center; cursor:pointer; align-items:center; text-decoration:none;}
           .icon-btn svg{width:18px; height:18px; stroke:#666;}
           .btn:active{transform: translateY(1px);}
